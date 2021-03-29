@@ -12,7 +12,7 @@ import {
 import { Modal, ModalHeader, Button } from "reactstrap";
 import { confirmModalDialog } from "../../Utils/reactConfirmModalDialog";
 import SearchBar from "../../Utils/searchBar";
-
+import { Link, browserHistory } from "react-router";
 import CarTable from "./components/Cars/CarTable";
 import CarForm from "./components/Cars/CarForm";
 import TopBar from "../Home/components/TopBar";
@@ -90,6 +90,7 @@ class Car extends Component {
           buttonNew={this.handleNew}
           buttonEdit={this.handleEdit}
           buttonDelete={this.handleDelete}
+          buttonDetail={this.handleDetail}
         />
 
         {/* เป็น Component สำหรับแสดง Modal ของ reactstrap 
@@ -170,6 +171,11 @@ class Car extends Component {
         }),
     });
   };
+
+  handleDetail = (id) => {
+    browserHistory.push(`/showcar/detail/${id}`);
+  };
+
 }
 
 function mapStateToProps(state) {

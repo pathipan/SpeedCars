@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import moment from "moment";
+import { Link } from "react-router";
 
 //แสดงรายชื่อข้อมูลสถานที่ แสดงแบบ HTML TABLE
 class CarTable extends Component {
   render() {
     //Destructuring ค่า props ที่ส่งมาจาก src/pages/Car.js
-    const { data, buttonEdit, buttonDelete } = this.props;
+    const { data, buttonEdit, buttonDelete, buttonDetail } = this.props;
 
     return (
       <div className="container row feature">
@@ -102,6 +103,9 @@ class CarTable extends Component {
                   >
                     ลบ
                   </Button>
+                  <Link onClick={() => buttonDetail(e.id)}>
+                    <Button size="sm">ดูรถ</Button>
+                  </Link>
                 </div>
               </div>
             );

@@ -51,14 +51,14 @@ class CarPage extends Component {
                   />
                 </div>
               </div>
-              <div className="text-right">
+              {/* <div className="text-right">
                 <div className="user">
                   <Link to="/favoritecar" className="btn wishlist">
                     <i className="fa fa-heart" />
                     <span>(0)</span>
                   </Link>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

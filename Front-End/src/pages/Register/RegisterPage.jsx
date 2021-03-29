@@ -149,7 +149,7 @@ function RegisterPage() {
                   style={{ color: "#8000FF" }}
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label className="text-left">เบอร์โทร <span style={{ color: "red" }}>*</span></label>
                 <input
                   type="text"
@@ -162,7 +162,7 @@ function RegisterPage() {
                   outline
                   style={{ color: "#8000FF" }}
                 />
-              </div>
+              </div> */}
               {/* <div className="form-group">
                 <label className="text-left">เฟชบุ็ค</label>
                 <input

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Input } from "reactstrap";
 import { MDBIcon, MDBAnimation } from "mdbreact";
+import { browserHistory ,Link} from "react-router";
 
 class SearchCars extends Component {
   //รับค่า props และกำหนด state ผ่าน  constructor เป็นอีกรูปแบบหนึ่ง
@@ -53,7 +54,7 @@ class SearchCars extends Component {
                   value={this.state.term}
                   onChange={(e) => this.onInputChange(e.target.value)}
                 >
-                  <option>--- ทั้งหมด ---</option>
+                  <option style={{ color: "#8000FF" }} value="">--- ทั้งหมด ---</option>
                   <option style={{ color: "#8000FF" }} value="TOYOTA">
                     TOYOTA
                   </option>

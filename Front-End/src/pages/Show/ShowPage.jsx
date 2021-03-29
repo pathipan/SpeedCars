@@ -22,7 +22,6 @@ import { Card, Row, Col, Badge } from "react-bootstrap";
 class ShowPage extends Component {
   state = {
     modal2: false,
-    modal3: false,
   };
 
   toggle = (nr) => () => {

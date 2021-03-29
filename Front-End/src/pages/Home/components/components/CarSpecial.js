@@ -33,29 +33,18 @@ class CarSpecial extends Component {
                           <a href="">
                             <img src={e.image1} alt="Product Image" />
                           </a>
-                          <div className="product-action">
-                            <a href="">
-                              <i className="fa fa-heart" />
-                            </a>
-                            <a href="">
-                              <i className="fa fa-search" />
+                        </div>
+                        <div className="product-price">
+                          <div className="text-center">
+                            <h5>ราคา {e.price} บาท</h5>
+                          </div>
+                          <div className="text-center">
+                            <a href="" className="btn wishlist">
+                              ดูรายละเอียด
                             </a>
                           </div>
                         </div>
                       </Link>
-                      <div className="product-price">
-                        <div className="text-center">
-                          <h5>ราคา 1,234,567 บาท</h5>
-                        </div>
-                        <div className="text-center">
-                          <a
-                            href="https://web.facebook.com/?_rdc=1&_rdr"
-                            className="btn wishlist"
-                          >
-                            ติดต่อผู้ขาย
-                          </a>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

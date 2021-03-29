@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import moment from "moment";
-
+import { Link } from "react-router";
 //แสดงรายชื่อข้อมูลสถานที่ แสดงแบบ HTML TABLE
 class profileTable extends Component {
   render() {
     //Destructuring ค่า props ที่ส่งมาจาก src/pages/Car.js
-    const { data, buttonEdit, buttonDelete, user_id } = this.props;
+    const {
+      data,
+      buttonEdit,
+      buttonDelete,
+      user_id,
+      buttonDetail,
+    } = this.props;
 
     return (
       <div className="row feature">
@@ -53,6 +59,12 @@ class profileTable extends Component {
                   <div className="col-md-12 border-bottom">
                     รุ่น : {e.generation}
                   </div>
+                  <div className="col-md-12 border-bottom">
+                    โฉมรถยนต์ : {e.car_makeover}
+                  </div>
+                  <div className="col-md-12 border-bottom">
+                    รายละเอียดรุ่น : {e.model_details}
+                  </div>
                   <div className="col-md-12 border-bottom">ปี : {e.year}</div>
                   <div className="col-md-12 border-bottom">
                     ขนาดเครื่องยนต์ : {e.engine_size}
@@ -96,13 +108,9 @@ class profileTable extends Component {
                     >
                       แก้ไข
                     </Button>
-                    {/* <Button
-                    color="danger"
-                    size="sm"
-                    onClick={() => buttonDelete(e.id)}
-                  >
-                    ลบ
-                  </Button> */}
+                    <Link onClick={() => buttonDetail(e.id)}>
+                      <Button size="sm">ดูรถ</Button>
+                    </Link>
                   </div>
                 </div>
               );

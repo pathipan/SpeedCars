@@ -11,16 +11,8 @@ import {
   resetStatus,
 } from "../../redux/actions/carActions";
 
-import { loadUsers, getUser, saveUser } from "../../redux/actions/userActions";
-import {
-  MDBContainer,
-  MDBBtn,
-  MDBModal,
-  MDBModalBody,
-  MDBModalHeader,
-  MDBModalFooter,
-} from "mdbreact";
-// import { Modal, ModalHeader, Button } from "reactstrap";
+import { loadUsers } from "../../redux/actions/userActions";
+import { MDBModal, MDBModalHeader } from "mdbreact";
 import { confirmModalDialog } from "../../Utils/reactConfirmModalDialog";
 import SearchBar from "../../Utils/searchBar";
 import { debounce } from "lodash";
@@ -30,6 +22,8 @@ import UserTable from "./components/profileUserTable";
 import UserForm from "./components/profileUserForm";
 import { Button } from "reactstrap";
 import Test from "./components/ProfileUser";
+import { Link, browserHistory } from "react-router";
+import TopBar from "../Home/components/TopBar";
 
 class ProfilePage extends Component {
   //มีการใช้ Modal ของ reactstrap ซึ่งจะต้องเก็บ State การแสดง modal ไว้
@@ -64,89 +58,95 @@ class ProfilePage extends Component {
         this.props.data.user_type = "ผู้ดูแลระบบ";
       }
       return (
-        <div
-          className="shadow-box-example z-depth-3 sunny-morning-gradient container"
-          style={{ padding: "30px", margin: "20px 0" }}
-        >
-          <Row>
-            <Col md={4}>
-              <h3 className="text-right green-text">
-                <MDBIcon icon="award" />
-              </h3>
-              <div>
-                <img
-                  className="shadow-box-example z-depth-5"
-                  style={{ width: 270, height: 263 }}
-                  src={this.props.data.image}
-                  className="img-fluid rounded-circle hoverable"
-                  alt="ไม่มีโปรไฟล์"
-                />
+        <div>
+          <TopBar />
+          <hr color="red" />
+
+          <div
+            className="shadow-box-example z-depth-3 sunny-morning-gradient container"
+            style={{ padding: "30px", margin: "20px 0" }}
+          >
+            <Row>
+              <Col md={4}>
+                <h3 className="text-right green-text">
+                  <MDBIcon icon="award" />
+                </h3>
+                <div>
+                  <img
+                    className="shadow-box-example z-depth-5"
+                    style={{ width: 270, height: 263 }}
+                    src={this.props.data.image}
+                    className="img-fluid rounded-circle hoverable"
+                    alt="ไม่มีโปรไฟล์"
+                  />
+                </div>
+                <br></br>
+                <h3 className="text-left blue-text">
+                  <MDBIcon icon="gem" /> {this.props.data.user_type}
+                </h3>
+              </Col>
+              <Col md={8}>
+                <Card className="text-right shadow-box-example hoverable ">
+                  <Card.Text className="text-left ">
+                    <Test />
+                  </Card.Text>
+                </Card>
+              </Col>
+            </Row>
+            <Row>
+              <hr />
+
+              {/* Service Start */}
+              <div
+                className="service col-lg-12"
+                style={{ backgroundColor: "yellow", color: "red" }}
+              >
+                <h1 style={{ color: "red" }}>สำหรับแก้ไข ข้อมูลรถยนต์ของคุณ</h1>
               </div>
-              <br></br>
-              <h3 className="text-left blue-text">
-                <MDBIcon icon="gem" /> {this.props.data.user_type}
-              </h3>
-            </Col>
-            <Col md={8}>
-              <Card className="text-right shadow-box-example hoverable ">
-                <Card.Text className="text-left ">
-                  <Test />
-                </Card.Text>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <hr />
+              {/* Service End */}
 
-            {/* Service Start */}
-            <div
-              className="service col-lg-12"
-              style={{ backgroundColor: "yellow", color: "red" }}
-            >
-              <h1 style={{ color: "red" }}>สำหรับแก้ไข ข้อมูลรถยนต์ของคุณ</h1>
-            </div>
-            {/* Service End */}
-
-            <div className="form-group">
-              <div className="col-md-12">
-                <SearchBar
-                  onSearchTermChange={carSearch}
-                  placeholder="ค้นหา...ยี่ห้อ, รุ่น"
-                />
+              <div className="form-group">
+                <div className="col-md-12">
+                  <SearchBar
+                    onSearchTermChange={carSearch}
+                    placeholder="ค้นหา...ยี่ห้อ, รุ่น"
+                  />
+                </div>
               </div>
-            </div>
 
-            <hr color="red" />
+              <hr color="red" />
 
-            {/* แสดงข้อความ Loading ก่อน */}
-            {cars.isLoading && <div>Loading...</div>}
+              {/* แสดงข้อความ Loading ก่อน */}
+              {cars.isLoading && <div>Loading...</div>}
 
-            {/* Component profileTable จะส่ง props ไป 4 ตัว */}
-            <CarTable
-              data={cars.data}
-              user_id={this.props.data.sub}
-              buttonEdit={this.handleEdit}
-              buttonDelete={this.handleDelete}
-            />
-
-            <MDBModal
-              isOpen={this.state.modal}
-              toggle={this.toggle}
-              className="modal-primary"
-              autoFocus={false}
-              size="lg"
-            >
-              <MDBModalHeader toggle={this.toggle}>
-                แก้ไขข้อมูลรถยนต์
-              </MDBModalHeader>
-              <CarForm
-                data={car.data}
-                carSave={carSave}
-                onSubmit={this.handleSubmit}
-                onToggle={this.toggle}
+              {/* Component profileTable จะส่ง props ไป 4 ตัว */}
+              <CarTable
+                data={cars.data}
+                user_id={this.props.data.sub}
+                buttonEdit={this.handleEdit}
+                buttonDelete={this.handleDelete}
+                buttonDetail={this.handleDetail}
               />
-            </MDBModal>
-          </Row>
+
+              <MDBModal
+                isOpen={this.state.modal}
+                toggle={this.toggle}
+                className="modal-primary"
+                autoFocus={false}
+                size="lg"
+              >
+                <MDBModalHeader toggle={this.toggle}>
+                  แก้ไขข้อมูลรถยนต์
+                </MDBModalHeader>
+                <CarForm
+                  data={car.data}
+                  carSave={carSave}
+                  onSubmit={this.handleSubmit}
+                  onToggle={this.toggle}
+                />
+              </MDBModal>
+            </Row>
+          </div>
         </div>
       );
     }
@@ -187,6 +187,10 @@ class ProfilePage extends Component {
           this.props.dispatch(loadCars());
         }),
     });
+  };
+
+  handleDetail = (id) => {
+    browserHistory.push(`/showcar/detail/${id}`);
   };
 }
 

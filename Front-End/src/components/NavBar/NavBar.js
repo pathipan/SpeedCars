@@ -152,7 +152,7 @@ class Header extends Component {
     } else {
       return [
         <li className="nav-item" key={5}>
-          <Link to="/register" className="nav-link">
+          <Link to="/registermember" className="nav-link">
             <MDBIcon icon="user" /> สมัครสมาชิก
           </Link>
         </li>,
